@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import Badge from './Badge'
 import CardFooter from './CardFooter'
 import { BASE_URL } from '@/api'
@@ -12,11 +13,13 @@ const BlogCard = ({blog}) => {
       />
     </div>
 
-      <Badge category = {blog.category}  />
-    
+      <Badge category = {blog?.category}  />
+
+      <Link to={`blogs/${blog.id}/`}>  
       <h3 className="font-semibold  leading-normal text-[#181A2A] mb-0 dark:text-white">
        {blog.title}
       </h3>
+      </Link>
 
     <CardFooter blog={blog} />
   </div>

@@ -11,15 +11,16 @@ function HomePage() {
   const [page, setPage] = useState(1);
   const numOfBlogsPerPage = 3;
 
-  const {data:blogs, isPending} = useQuery({
+  const {data, isPending} = useQuery({
     queryKey : ["blogs"], 
-    queryFn : getBlogs(page)
+    queryFn : ()=> getBlogs(page)
 
   })
 
- const numOfPages = Math.ceil(blogs?.count / numOfBlogsPerPage);
+const numOfPages = Math.ceil(data?.count / numOfBlogsPerPage);
+const blogs = data?.results || [];
 
-  function handleSetPage(val) {
+function handleSetPage(val) {
     setPage(val);
   }
 
@@ -27,15 +28,14 @@ function increasePageValue() {
     setPage((curr) => curr + 1);
   }
 
-  function decreasePageValue() {
+function decreasePageValue() {
     setPage((curr) => curr - 1);
   }
 
-  console.log(blogs)
     return (
     <>
       <Header />
-      <BlogContainer blogs={blogs.results} isPending={isPending} />
+      <BlogContainer blogs={blogs} isPending={isPending} />
       <PagePagination
        increasePageValue={increasePageValue}
         decreasePageValue={decreasePageValue}
