@@ -1,24 +1,24 @@
 import Badge from './Badge'
 import CardFooter from './CardFooter'
-import thumbnail from "../images/design_vii.jpg"
+import { BASE_URL } from '@/api'
 
-const BlogCard = () => {
+const BlogCard = ({blog}) => {
   return (
     <div className="px-3 py-3 rounded-md w-[300px] h-auto flex flex-col gap-4 dark:border-gray-800 border shadow-lg">
     <div className="w-full h-[200px] border rounded-md overflow-hidden">
       <img
-        src={thumbnail}
+        src={`${BASE_URL}${blog.featured_img}`}
         className="w-full h-full object-cover rounded-lg"
       />
     </div>
 
-      <Badge />
+      <Badge category = {blog.category}  />
     
       <h3 className="font-semibold  leading-normal text-[#181A2A] mb-0 dark:text-white">
-        Build and Ecommerce Web App with Django and React
+       {blog.title}
       </h3>
 
-    <CardFooter />
+    <CardFooter blog={blog} />
   </div>
   )
 }
