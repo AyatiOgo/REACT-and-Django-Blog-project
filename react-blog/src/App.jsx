@@ -7,6 +7,7 @@ import AppLayout from "./ui_components/AppLayout";
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import ProfilePage from "./pages/ProfilePage";
+import SignUpPage from "./pages/SignUpPage";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route index element={<HomePage />} />
           <Route path="blogs/:id/" element={<DetailPage />} />
           <Route path="profile" element={<ProfilePage />} />
+          <Route path="/signup" element={<SignUpPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -11,7 +11,7 @@ const DetailPage = () => {
   
   const { id }= useParams()
 
-  const {data:blog, isError, error, isPending } = useQuery({
+  const {data:blog, isPending } = useQuery({
     queryKey: ["blogs", id],
     queryFn: ()=> getBlog(id)
   })
@@ -21,7 +21,7 @@ const DetailPage = () => {
   if (isPending) {
     return <Spinner/>
   }
-  
+
   return (
     <div className="padding-dx max-container py-9">
       <Badge category={blog.category}  />

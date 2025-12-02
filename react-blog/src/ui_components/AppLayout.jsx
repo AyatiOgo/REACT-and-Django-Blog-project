@@ -1,6 +1,8 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
@@ -30,6 +32,7 @@ function AppLayout() {
       <div className={ darkMode && "dark"}>
     <main className="w-full bg-[#ffffff] dark:bg-[#181A2A]">
       <NavBar darkMode={darkMode} setDarkMode={handleDarkMode} />
+      <ToastContainer />
       <Outlet />
       <Footer />
     </main>
