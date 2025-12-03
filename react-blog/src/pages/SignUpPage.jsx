@@ -11,16 +11,17 @@ function SignUpPage() {
   const {register, handleSubmit,  formState: { errors }, watch, reset } = useForm()
   const password = watch("password")
 
-  const mutation = useMutation({
-    mutationFn : (data)=> register_user(data),
-    onSuccess : ()=> {
-      toast.success("You Have Succesfully Created a New Account!")
-      reset()
-    }, 
-    onError : (err)=> {
-      toast.error(err.message)
-    }
-  })
+const mutation = useMutation({
+    mutationFn: (data) => register_user(data),
+    onSuccess: () => {
+      toast.success("You have successfully created an account!!!");
+      reset();
+    },
+
+    onError: (err) => {
+      toast.error(err.message);
+    },
+  });
 
   function onSubmit(data) {
     mutation.mutate(data)
@@ -58,6 +59,29 @@ function SignUpPage() {
         />
 
       {errors?.username?.message && <small className="text-red-700">{errors.username.message}</small> }  
+      </div>
+
+      <div className="flex flex-col" >
+        <Label htmlFor="email" className="dark:text-[97989F]">
+          Email
+        </Label>
+        <Input
+          type="text"
+          id="email"
+          placeholder="Enter Email"
+
+          {...register ( "email", 
+            {
+              required: "email is required",
+               minLength : {
+                value : 3,
+                message : "email must be longer than 3"
+
+          }}, )}
+          className="border-2 border-[#141624] dark:border-[#3B3C4A] focus:outline-0 h-[40px] w-[300px]"
+        />
+
+      {errors?.email?.message && <small className="text-red-700">{errors.email.message}</small> }  
       </div>
 
       <div className="flex flex-col">

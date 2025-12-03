@@ -15,20 +15,21 @@ export async function getBlog(id) {
     return response.data
 }  
     catch (error) {
-        throw new error(error.message)
+        throw new Error(error.message)
     }
 } 
 
 export async function register_user(data) {
     try {
-        const response = api.post('register_user/', data)
+        const response = await api.post('register_user/', data)
         return response.data
-    } catch (error) {
-        if (error.status == 400){
-            throw new error("Username Already Exists")
+
+    } catch (err) {
+        console.log(err)
+
+        if (err.status == 400){
+            throw new Error("Username Already Exists")
         }
-        else {
-            throw new error(error.message)
-        }
+        throw new Error(err.message)
     }
 }
