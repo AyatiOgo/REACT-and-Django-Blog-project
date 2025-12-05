@@ -33,3 +33,17 @@ export async function register_user(data) {
         throw new Error(err.message)
     }
 }
+export async function signin(data) {
+    try {
+        const response = await api.post('token/', data)
+        return response.data
+
+    } catch (err) {
+        console.log(err)
+
+        if (err.status == 400){
+            throw new Error("Invalid Credentials")
+        }
+        throw new Error(err.message)
+    }
+}

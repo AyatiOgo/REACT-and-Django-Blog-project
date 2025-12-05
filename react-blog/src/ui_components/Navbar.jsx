@@ -17,10 +17,10 @@ const NavBar = ({setDarkMode}) => {
         </Link>
         <ul className="flex items-center  justify-end gap-9 text-[#3B3C4A] lg:flex-1 max-md:hidden dark:text-[#FFFFFF]">
           {/* <li > <NavLink to="profile" className={({ isActive }) => (isActive ? "active" : "")}  > Hi, Clinton </NavLink> </li> */}
-          <li><Link> Login </Link></li>
+          <li><NavLink to="signin" className={({ isActive }) => (isActive ? "active" : "")}  >  Login </NavLink> </li>
           <li><Link> LogOut </Link></li>
-          <li > <NavLink to="/signup" className={({ isActive }) => (isActive ? "active" : "")}  >  Register </NavLink> </li>
-          <li className="font-semibold"   > <Link> Create post </Link> </li>
+          <li > <NavLink to="profile" className={({ isActive }) => (isActive ? "active" : "")}  >  Register </NavLink> </li>
+          <li className="font-semibold"   ><NavLink to="create-post" className={({ isActive }) => (isActive ? "active" : "")}  >  Create Post </NavLink> </li>
         </ul>
 
         <Switch onClick={()=> setDarkMode((curr)=> !curr  ) } />
