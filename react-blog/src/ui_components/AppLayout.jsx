@@ -4,13 +4,8 @@ import NavBar from "./NavBar";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect, useState } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-
-const queryClient = new QueryClient()
-
-
-function AppLayout() {
+function AppLayout({isAuntheticated, username, setIsAuthenticated}) {
 
   useEffect(()=> {
     if (localStorage.getItem("dark") === null) {
@@ -28,16 +23,15 @@ function AppLayout() {
     }
 
     return (
-     <QueryClientProvider client={queryClient} > 
+    
       <div className={ darkMode && "dark"}>
     <main className="w-full bg-[#ffffff] dark:bg-[#181A2A]">
-      <NavBar darkMode={darkMode} setDarkMode={handleDarkMode} />
+      <NavBar darkMode={darkMode} setDarkMode={handleDarkMode} isAuntheticated={isAuntheticated} username={username}  setIsAuthenticated={setIsAuthenticated} />
       <ToastContainer />
       <Outlet />
       <Footer />
     </main>
     </div>
-    </QueryClientProvider>
     )
 }
 

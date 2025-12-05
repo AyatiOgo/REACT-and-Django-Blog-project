@@ -43,7 +43,7 @@ useEffect(function(){
         } 
         const decodedtoken = jwtDecode(token)
         const tokenExpiryDate = decodedtoken.exp
-        const currentTime = Date.now/1000
+        const currentTime = Date.now() /1000
 
         if (currentTime > tokenExpiryDate){
             await refresh_token()
@@ -53,12 +53,11 @@ useEffect(function(){
             setIsAuthorized(true)
         }
 
-        if (isAuthorized === null){
-            return <Spinner/>
-        }
-
     }
 
+    if (isAuthorized === null){
+    return <Spinner/>
+}
     return (
     <>
     {isAuthorized ? children :  <Navigate to="/signin" state={{from:location}} replace /> }

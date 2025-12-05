@@ -5,9 +5,18 @@ import ResponsiveNavBar from "./ResponsiveNavBar";
 import HomePage from "@/pages/HomePage";
 import { Link, NavLink } from "react-router-dom";
 
-const NavBar = ({setDarkMode}) => {
+const NavBar = ({setDarkMode, isAuntheticated, setIsAuthenticated, username}) => {
 
     const [showNavBar, setShowNavBar] = useState(false)
+
+    console.log(username)
+
+    function logout() {
+      localStorage.removeItem("access")
+      localStorage.removeItem("refresh")
+      setIsAuthenticated(false)
+      username(null)
+    }
 
   return (
     <>
@@ -16,10 +25,18 @@ const NavBar = ({setDarkMode}) => {
           DevFoliio
         </Link>
         <ul className="flex items-center  justify-end gap-9 text-[#3B3C4A] lg:flex-1 max-md:hidden dark:text-[#FFFFFF]">
-          {/* <li > <NavLink to="profile" className={({ isActive }) => (isActive ? "active" : "")}  > Hi, Clinton </NavLink> </li> */}
+
+        {isAuntheticated ?
+        <>
+          <li >  Hi, {username} </li>
+          <li onClick={ logout} className="cursor-pointer"> LogOut </li> 
+        </>  :
+        
+        <> 
           <li><NavLink to="signin" className={({ isActive }) => (isActive ? "active" : "")}  >  Login </NavLink> </li>
-          <li><Link> LogOut </Link></li>
           <li > <NavLink to="profile" className={({ isActive }) => (isActive ? "active" : "")}  >  Register </NavLink> </li>
+        </> }
+         
           <li className="font-semibold"   ><NavLink to="create-post" className={({ isActive }) => (isActive ? "active" : "")}  >  Create Post </NavLink> </li>
         </ul>
 
