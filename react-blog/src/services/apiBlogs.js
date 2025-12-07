@@ -66,3 +66,27 @@ export async function create_post(data) {
         throw new Error(error)
     }
 }
+
+export async function update_blog(data, id) {
+    try {
+        const response = await api.put(`update_blog/${id}/`, data)
+        return response.data
+    } catch (err) {
+        if(err.response){
+      throw new Error(err.response?.data?.message || "Failed to update blog" )
+    }
+    throw new Error(err.message)
+    }
+}
+
+export async function delete_post(id) {
+    try {
+        const response = await api.delete(`delete_blog/${id}/`)
+        return response.data
+    } catch (err) {
+        if(err.response){
+      throw new Error(err.response?.data?.message || "Failed to delete post" )
+    }
+    throw new Error(err.message)
+    }
+}

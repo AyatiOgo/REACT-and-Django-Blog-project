@@ -34,10 +34,10 @@ const App = () => {
       <Routes>
         <Route path="/" element={<AppLayout isAuntheticated={isAuntheticated} username={username} setIsAuthenticated={setIsAuthenticated} />}>
           <Route index element={<HomePage />} />
-          <Route path="blogs/:id/" element={<DetailPage />} />
+          <Route path="blogs/:id/" element={<DetailPage username = {username} isAuntheticated={isAuntheticated} />} />
           <Route path="profile" element={<ProfilePage />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/create-post" element={ <ProtectedRoute> <CreatePostPage /> </ProtectedRoute> } />
+          <Route path="/create-post" element={ <ProtectedRoute> <CreatePostPage isAuntheticated={isAuntheticated} /> </ProtectedRoute> } />
           <Route path="/signin" element={<LoginPage setIsAuthenticated={setIsAuthenticated}  setUsername={setUsername} />} />
         </Route>
       </Routes>
