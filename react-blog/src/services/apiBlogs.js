@@ -90,3 +90,17 @@ export async function delete_post(id) {
     throw new Error(err.message)
     }
 }
+
+
+export async function getUserInfo(username) {
+    try {
+        const response = await api.get(`get_userinfo/${username}`)
+        return response.data
+    } catch (err) {
+        if(err.response){
+      throw new Error(err.response?.data?.message || "Failed to get User Info" )
+    }
+    throw new Error(err.message)
+    }
+}
+
