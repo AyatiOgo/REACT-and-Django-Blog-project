@@ -103,4 +103,15 @@ export async function getUserInfo(username) {
     throw new Error(err.message)
     }
 }
+export async function updateUserProfile(data) {
+    try {
+        const response = await api.put(`update_profile/`, data)
+        return response.data
+    } catch (err) {
+        if(err.response){
+      throw new Error(err.response?.data?.message || "Failed to get User Info" )
+    }
+    throw new Error(err.message)
+    }
+}
 

@@ -1,11 +1,11 @@
-import pic from "../images/pic.jpg"
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 import { FaYoutube } from "react-icons/fa";
 import { BASE_URL } from "@/api";
+import { HiPencilAlt } from "react-icons/hi";
 
-const Hero = ({data}) => {
+const Hero = ({data, authUSerName, handleToggle}) => {
   return (
     <div className="padding-x py-9 max-container flex flex-col items-center justify-center gap-4 bg-[#F6F6F7] dark:bg-[#242535] rounded-md">
     <div className="flex gap-4">
@@ -22,6 +22,7 @@ const Hero = ({data}) => {
           Collaborator & Editor
         </p>
       </span>
+       { data.username === authUSerName && <HiPencilAlt onClick={handleToggle}   className="dark:text-white text-3xl cursor-pointer" />}
     </div>
 
     <p className="text-[#3B3C4A] text-[16px] max-md:leading-2rem lg:leading-normal lg:mx-[200px] text-center dark:text-[#BABABF]">
